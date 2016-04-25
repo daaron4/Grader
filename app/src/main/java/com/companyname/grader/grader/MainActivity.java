@@ -25,33 +25,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickedGrade(View view) {
-        int grade = Integer.parseInt(userInput.getText().toString());
-        if (grade > 100 || grade < 0) {
-            Toast.makeText(getApplicationContext(), "Invalid Input", Toast.LENGTH_LONG).show();
-        }
-        else {
-            if (grade > 90) {
-                result.setText("A");
-                result.setTextColor(Color.GREEN);
-            }
-            else if (grade > 80) {
-                result.setText("B");
-                result.setTextColor(Color.GREEN);
-            }
-            else if (grade > 70) {
-                result.setText("C");
-                result.setTextColor(Color.GREEN);
-            }
-            else if (grade > 60) {
-                result.setText("D");
+        try {
+            int grade = Integer.parseInt(userInput.getText().toString());
+
+            if (grade > 100 || grade < 0) {
+                Toast.makeText(getApplicationContext(), "Invalid Input", Toast.LENGTH_LONG).show();
             }
             else {
-                result.setText("F");
+                if (grade > 90) {
+                    result.setText("A");
+                    result.setTextColor(Color.GREEN);
+                }
+                else if (grade > 80) {
+                    result.setText("B");
+                    result.setTextColor(Color.GREEN);
+                }
+                else if (grade > 70) {
+                    result.setText("C");
+                    result.setTextColor(Color.GREEN);
+                }
+                else if (grade > 60) {
+                    result.setText("D");
+                }
+                else {
+                    result.setText("F");
+                }
             }
+
+            setTextColor(grade);
+        } catch (NumberFormatException e) {
+            Toast.makeText(getApplicationContext(), "Enter a number please.", Toast.LENGTH_SHORT).show();
         }
-
-        setTextColor(grade);
-
     }
 
     public void clickedPassOrFail(View view) {
